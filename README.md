@@ -38,7 +38,7 @@ Dataset ini berisi informasi tentang gig Fiverr yang sudah dibersihkan, dengan k
 ```
 dataset/
 ├── README.md                           # File dokumentasi ini
-├── analisis_fiverr.ipynb              # Notebook Jupyter dengan analisis lengkap
+├── market_gap_analysis.ipynb              # Notebook Jupyter dengan analisis lengkap
 └── fiverr-data-gigs-cleaned.csv       # Dataset yang sudah dibersihkan
 ```
 
