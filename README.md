@@ -50,10 +50,10 @@ Dataset ini berisi data gig Fiverr yang sudah dibersihkan dengan kolom utama seb
 ## Struktur File
 
 ```
-dataset/
-├── README.md                           # File dokumentasi ini
-├── analisis_fiverr.ipynb              # Notebook Jupyter dengan analisis lengkap
-└── fiverr-data-gigs-cleaned.csv       # Dataset yang sudah dibersihkan
+Dataset2/
+├── README.md
+├── market_gap_analysis.ipynb
+└── fiverr-data-gigs-cleaned.csv
 ```
 
 ## Instalasi
