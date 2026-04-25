@@ -1,61 +1,75 @@
-# Analisis Data Fiverr Gigs 📊
+# Analisis Data Fiverr Gigs
 
-Proyek analisis data untuk memprediksi jumlah reviewer pada gig Fiverr menggunakan machine learning.
+Proyek ini bertujuan melakukan analisis data terhadap gig Fiverr untuk memahami faktor-faktor yang berkontribusi pada jumlah reviewer. Tujuan utama analisis ini adalah:
 
-## 📋 Daftar Isi
+- Mengidentifikasi pola dan hubungan antara fitur gig dan jumlah reviewer yang diterima.
+- Menentukan fitur paling penting yang mempengaruhi performa gig di Fiverr.
+- Mengembangkan model prediktif yang dapat memperkirakan jumlah reviewer berdasarkan atribut gig.
+- Menyediakan wawasan yang dapat membantu seller Fiverr meningkatkan daya saing gig mereka.
+
+## Daftar Isi
 - [Tentang Proyek](#tentang-proyek)
+- [Tujuan Analisis](#tujuan-analisis)
 - [Dataset](#dataset)
 - [Struktur File](#struktur-file)
 - [Instalasi](#instalasi)
 - [Penggunaan](#penggunaan)
-- [Fitur-Fitur](#fitur-fitur)
+- [Fitur Utama](#fitur-utama)
 - [Model](#model)
 - [Hasil](#hasil)
+- [Dependencies](#dependencies)
 
-## 🎯 Tentang Proyek
+## Tentang Proyek
 
-Proyek ini menganalisis data gig dari platform Fiverr untuk memahami faktor-faktor apa yang mempengaruhi jumlah reviewer (pembeli) pada setiap gig. Menggunakan machine learning (XGBoost), proyek ini membangun model prediktif untuk memprediksi jumlah reviewer berdasarkan berbagai fitur seperti:
+Analisis ini menggunakan data gig Fiverr yang telah dibersihkan untuk mengevaluasi tren dan performa pasar. Studi ini fokus pada aspek-aspek seperti rating, harga, judul gig, dan level seller, kemudian membandingkan kontribusi masing-masing faktor terhadap jumlah reviewer.
 
-- Rating rata-rata
-- Harga gig
-- Panjang judul
-- Konten judul (scraping, Excel, Python, ETL)
-- Tingkat seller
+## Tujuan Analisis
 
-## 📊 Dataset
+1. Menjelaskan tujuan bisnis dari analisis data ini:
+   - Menilai apakah kualitas dan karakteristik gig dapat mempengaruhi jumlah reviewer.
+   - Menentukan segmen layanan Fiverr yang menunjukkan kesenjangan antara pasokan dan permintaan.
+   - Memberikan rekomendasi berbasis data bagi seller untuk memperbaiki judul, harga, dan fitur gig.
+
+2. Menjelaskan tujuan teknis dari analisis data ini:
+   - Melakukan pembersihan data dan transformasi fitur yang relevan.
+   - Mengeksplorasi distribusi dan korelasi antar fitur.
+   - Melatih model machine learning untuk memprediksi jumlah reviewer.
+   - Menginterpretasi hasil model dan mengukur keakuratan prediksi.
+
+## Dataset
 
 **File**: `fiverr-data-gigs-cleaned.csv`
 
-Dataset ini berisi informasi tentang gig Fiverr yang sudah dibersihkan, dengan kolom-kolom:
+Dataset ini berisi data gig Fiverr yang sudah dibersihkan dengan kolom utama sebagai berikut:
 - `Title` - Judul gig
 - `Number of Reviewers` - Jumlah reviewer/pembeli
 - `Average Rating` - Rating rata-rata
 - `Price (USD)` - Harga dalam USD
 - `Seller Level` - Tingkat seller (Basic, Intermediate, Pro, Top Rated)
 
-## 📁 Struktur File
+## Struktur File
 
 ```
-dataset/
-├── README.md                           # File dokumentasi ini
-├── analisis_fiverr.ipynb              # Notebook Jupyter dengan analisis lengkap
-└── fiverr-data-gigs-cleaned.csv       # Dataset yang sudah dibersihkan
+Dataset2/
+├── README.md
+├── market_gap_analysis.ipynb
+└── fiverr-data-gigs-cleaned.csv
 ```
 
-## 🔧 Instalasi
+## Instalasi
 
-### Prerequisites
-- Python 3.8+
+### Prasyarat
+- Python 3.8 atau lebih tinggi
 - pip atau conda
 
-### Setup Environment
+### Langkah Persiapan
 
-1. **Buat virtual environment:**
+1. Buat virtual environment:
    ```bash
    python -m venv venv
    ```
 
-2. **Aktivasi virtual environment:**
+2. Aktifkan virtual environment:
    - Windows:
      ```bash
      venv\Scripts\activate
@@ -65,109 +79,78 @@ dataset/
      source venv/bin/activate
      ```
 
-3. **Install dependencies:**
+3. Install dependencies:
    ```bash
-   pip install pandas numpy matplotlib seaborn scikit-learn xgboost shap jupyter
+   pip install pandas numpy matplotlib seaborn scikit-learn xgboost jupyter
    ```
 
-   Atau gunakan requirements.txt (jika ada):
+   Jika tersedia, gunakan:
    ```bash
    pip install -r requirements.txt
    ```
 
-## 📖 Penggunaan
+## Penggunaan
 
-1. **Buka Jupyter Notebook:**
+1. Buka Jupyter Notebook:
    ```bash
-   jupyter notebook analisis_fiverr.ipynb
+   jupyter notebook market_gap_analysis.ipynb
    ```
 
-2. **Jalankan semua cell** secara berurutan (Shift + Enter)
+2. Jalankan semua cell secara berurutan.
 
-3. **Hasilnya:**
-   - Visualisasi distribusi jumlah reviewer
-   - Analisis per tingkat seller
-   - Metrik model (MAE, R²)
-   - Feature importance
+3. Analisis menghasilkan:
+   - Visualisasi distribusi jumlah reviewer per kategori.
+   - Ringkasan market gap berdasarkan kategori gig.
+   - Wawasan tentang permintaan dan kompetisi di Fiverr.
 
-## ✨ Fitur-Fitur Utama
+## Fitur Utama
 
-### 1. **Data Cleaning**
-- Cleaning kolom "Number of Reviewers" (handling format 1k+, k+)
-- Konversi tipe data ke numeric
-- Menghilangkan missing values
+### Data Cleaning
+- Memproses nilai `Number of Reviewers` dengan format seperti `1k` atau `1k+`.
+- Mengonversi kolom numerik ke tipe yang sesuai.
+- Menyiapkan fitur tambahan untuk analisis kategori.
 
-### 2. **Exploratory Data Analysis (EDA)**
-- Histogram distribusi jumlah reviewer
-- Box plot: jumlah reviewer per seller level
+### Kategorisasi Gig
+- Mengelompokkan gig ke dalam kategori layanan seperti:
+  - Web Scraping & Data Mining
+  - Excel & Google Sheets
+  - Machine Learning & AI
+  - Data Engineering & Big Data
+  - Other Data Services
 
-### 3. **Feature Engineering**
-- `title_length` - Panjang judul dalam karakter
-- `has_scraping` - Apakah judul mengandung kata "scraping"
-- `has_excel` - Apakah judul mengandung kata "excel", "vba", "macro", "google sheet"
-- `has_python` - Apakah judul mengandung kata "python"
-- `has_etl` - Apakah judul mengandung kata "etl", "pipeline", "spark", "airflow"
-- One-hot encoding untuk Seller Level
+### Eksplorasi Data
+- Menentukan distribusi jumlah gig per kategori.
+- Mengukur rata-rata reviewer dan persentase gig tanpa reviewer.
+- Menampilkan korelasi antara harga dan jumlah reviewer.
 
-### 4. **Model Prediction**
-- Algorithm: XGBoost Regressor
-- Train-test split: 80-20
-- Prediksi: jumlah reviewer
+### Rekomendasi Bisnis
+- Mengidentifikasi kategori yang paling diminati pembeli.
+- Mengamati potensi oversupply pada layanan tertentu.
+- Memberikan rekomendasi bagi seller baru dan yang ingin meningkatkan performa gig.
 
-## 🤖 Model
+## Model
 
-### Algoritma: XGBoost Regressor
+Analisis ini terutama berbasis eksplorasi data dan kategori pasar. Model machine learning dapat ditambahkan sebagai langkah lanjutan untuk memprediksi jumlah reviewer berdasarkan fitur yang diekstrak.
 
-**Parameter:**
-- `n_estimators`: 200
-- `learning_rate`: 0.1
-- `random_state`: 42
+## Hasil
 
-**Train-Test Split**: 80% training, 20% testing
+Dari analisis saat ini, yang ditonjolkan adalah:
+- Kategori dengan permintaan tinggi dan rata-rata reviewer tinggi.
+- Kategori yang menunjukkan banyak gig tetapi sedikit reviewer.
+- Kategori dengan potensi kesenjangan pasar untuk seller baru.
 
-## 📈 Hasil
+Hasil analisis diarahkan untuk membantu memahami struktur pasar Fiverr dan mengidentifikasi peluang layanan yang lebih menguntungkan.
 
-Setelah training, model menghasilkan:
+## Dependencies
 
-- **MAE (Mean Absolute Error)**: Rata-rata kesalahan absolut prediksi
-- **R² Score**: Seberapa baik model menjelaskan varians data
-- **Feature Importance**: Grafik 10 faktor terpenting yang mempengaruhi jumlah reviewer
+- pandas
+- numpy
+- matplotlib
+- seaborn
+- scikit-learn
+- xgboost
+- jupyter
 
-### Top Features (Umumnya):
-1. Average Rating - Rating gig sangat mempengaruhi jumlah pembeli
-2. Price (USD) - Harga gig mempengaruhi aksesibilitas
-3. Seller Level - Tingkat seller berpengaruh pada kepercayaan pembeli
-4. Title Length - Panjang judul mempengaruhi SEO dan clarity
-5. Domain-specific features (scraping, Excel, Python, ETL)
+## Catatan
 
-## 💡 Insights Utama
-
-- Gig dengan rating tinggi cenderung memiliki lebih banyak reviewer
-- Seller Level berpengaruh signifikan terhadap jumlah pembeli
-- Keyword tertentu (scraping, Excel, Python) dalam judul dapat mempengaruhi visibility
-- Harga gig memiliki hubungan dengan jumlah reviewer
-
-## 📝 Notes
-
-- Pastikan `fiverr-data-gigs-cleaned.csv` ada di directory yang sama dengan notebook
-- Jika path berbeda, ubah di cell data loading
-- Visualisasi menggunakan matplotlib dan seaborn dengan style 'seaborn-v0_8'
-
-## 🔗 Dependencies
-
-- **pandas** - Data manipulation
-- **numpy** - Numerical computation
-- **matplotlib** - Visualization
-- **seaborn** - Statistical visualization
-- **scikit-learn** - Machine learning (train-test split, metrics)
-- **xgboost** - XGBoost regressor
-- **shap** - Model interpretability (opsional)
-- **jupyter** - Interactive notebook
-
-## 📧 Author
-
-Dataset Analysis Project - April 2026
-
----
-
-**Happy analyzing!** 🚀
+Pastikan `fiverr-data-gigs-cleaned.csv` berada di direktori yang sama dengan notebook. Jika file berada di lokasi lain, sesuaikan path di cell data loading.
